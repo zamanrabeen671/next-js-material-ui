@@ -18,12 +18,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Link from "next/link";
-import Router from "next/router";
-import change from "../src/change";
+import { useRouter } from 'next/router'
  
-
-
-
 // import { transition } from "../src/material-dashboard-react.js";
 
 const drawerWidth = 240;
@@ -81,8 +77,8 @@ export default function Demo(props) {
       <List>
         {["Dashboard", "about2", "about3"].map((text, index) => {
           return (
-            <Link href={text} passHref>
-              <ListItem button key={text}>
+            <Link href={`/${text}`} key={text} passHref>
+              <ListItem button>
                 <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon>
@@ -98,7 +94,13 @@ export default function Demo(props) {
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
- 
+    const router = useRouter()
+
+    useEffect(() => {
+      router.replace('/Dashboard')
+    },[]);
+
+
     return (
     <div className={classes.root}>
       <CssBaseline />
