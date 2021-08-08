@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
@@ -19,10 +19,9 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Link from "next/link";
 import { useRouter } from 'next/router'
- 
-// import { transition } from "../src/material-dashboard-react.js";
-
-const drawerWidth = 240;
+import SVGICON from '../src/components/SvgIcon';
+import DashboardNavbar from '../src/components/Appbar'
+const drawerWidth = 100;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -59,8 +58,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function Demo(props) {
 
-
-
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -69,7 +66,6 @@ export default function Demo(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
   const drawer = (
     <div>
       <div className={classes.toolbar} />
@@ -80,9 +76,10 @@ export default function Demo(props) {
             <Link href={`/${text}`} key={text} passHref>
               <ListItem button>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {SVGICON[index]}
                 </ListItemIcon>
-                <ListItemText primary={text} />
+                
+                {/* <ListItemText primary={text} /> */}
               </ListItem>
             </Link>
           );
@@ -94,14 +91,14 @@ export default function Demo(props) {
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
-    const router = useRouter()
+  const router = useRouter()
 
-    useEffect(() => {
-      router.replace('/Dashboard')
-    },[]);
+  useEffect(() => {
+    router.replace('/Dashboard')
+  }, []);
 
 
-    return (
+  return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
@@ -115,9 +112,6 @@ export default function Demo(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Responsive drawer
-          </Typography>
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
@@ -153,24 +147,13 @@ export default function Demo(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
- 
       </main>
     </div>
   );
 }
 
-// export default ResponsiveDrawer;
 
 
-// import React, { useEffect } from "react";
-// import Router from 'next/router'
 
-// ...
-// useEffect(() => {
-//    const {pathname} = Router
-//    if(pathname == '/' ){
-//        Router.push('/hello-nextjs')
-//    }
-//  });
 
 
