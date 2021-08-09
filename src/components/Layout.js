@@ -1,9 +1,9 @@
-import React from 'react';
+import '../../styles/Layout.module.css'
 import Demo from '../../pages';
 
 const Layout = ({children}) => {
     return (
-        <div>
+        <div className="page-container">
             <Demo/>
             {children}
         </div>

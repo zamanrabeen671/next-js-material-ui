@@ -14,7 +14,10 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-
+import AddIcon from './Combined Shape.svg';
+import AvatarImage from './avatar.jpg';
+import Image from 'next/image';
+import { Avatar } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -30,10 +33,10 @@ const useStyles = makeStyles((theme) => ({
   },
   search: {
     position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    borderRadius: '20px',
+    backgroundColor: '#FFFFFF',
     '&:hover': {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
+      backgroundColor: '#FFFFFF',
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
@@ -51,9 +54,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    color: '#37474f'
   },
   inputRoot: {
-    color: 'inherit',
+    color: '#37474f',
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -64,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       width: '20ch',
     },
+    borderRadius: '20px'
   },
   sectionDesktop: {
     display: 'none',
@@ -76,6 +81,10 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
+  },
+  AvatarRoot: {
+      width: 30,
+      height: 30
   },
 }));
 
@@ -132,17 +141,15 @@ export default function DashboardNavbar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
+        <IconButton color="inherit">
+          <Image src={AddIcon} height={20} width={20} />
         </IconButton>
         <p>Messages</p>
       </MenuItem>
       <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
+        <IconButton aria-label="show 4 new notifications" color="#663399">
+          <Badge badgeContent={4} >
+            <NotificationsIcon style={{ color: '#663399' }} />
           </Badge>
         </IconButton>
         <p>Notifications</p>
@@ -154,7 +161,7 @@ export default function DashboardNavbar() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          <Avatar alt="A" src='/src/components/avatar.jpg' className={classes.AvatarRoot} />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -163,68 +170,53 @@ export default function DashboardNavbar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
+      <Toolbar>
+        <div className={classes.search}>
+          <div className={classes.searchIcon}>
+            <SearchIcon />
+          </div>
+          <InputBase
+            placeholder="Search…"
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput,
+            }}
+            inputProps={{ 'aria-label': 'search' }}
+          />
+        </div>
+        <div className={classes.grow} />
+        <div className={classes.sectionDesktop}>
+          <IconButton color="inherit">
+            <Image src={AddIcon} height={20} width={20} />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
-          </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
-              <MoreIcon />
-            </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
+          <IconButton aria-label="show 4 new notifications" color="inherit">
+            <Badge badgeContent={4} color="secondary">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+          <IconButton
+            edge="end"
+            aria-label="account of current user"
+            aria-controls={menuId}
+            aria-haspopup="true"
+            onClick={handleProfileMenuOpen}
+            color="inherit"
+          >
+            <Avatar alt="A" src="/src/components/avatar.jpg" className={classes.AvatarRoot} />
+          </IconButton>
+        </div>
+        <div className={classes.sectionMobile}>
+          <IconButton
+            aria-label="show more"
+            aria-controls={mobileMenuId}
+            aria-haspopup="true"
+            onClick={handleMobileMenuOpen}
+            color="inherit"
+          >
+            <MoreIcon />
+          </IconButton>
+        </div>
+      </Toolbar>
       {renderMobileMenu}
       {renderMenu}
     </div>
