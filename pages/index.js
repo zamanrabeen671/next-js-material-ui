@@ -1,11 +1,9 @@
 import React, { useEffect } from "react";
-
 import PropTypes from "prop-types";
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
@@ -27,24 +25,25 @@ import { Badge, Box, NotificationsIcon, Paper } from "@material-ui/core";
 import MailIcon from '@material-ui/icons/Mail';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import DashboardNavbar from "../src/components/Appbar";
-
 const drawerWidth = 100;
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     '& .MuiListItemIcon-root': {
-      justifyContent: 'center'
+      justifyContent: 'center !important',
     },
     '& .MuiList-padding' : {
-      padding: '8px',
+      padding: '6px !important',
     },
-    '& .MuiListItem-root:hover' : {
-      background: '#000',
-      // padding: '8px 0'
+    '& .MuiListItem-root' : {
+      flexDirection: 'column !important'
     }
-  },
 
+  },
+  MuiListItem2: {
+    flexDirection: 'column !important'
+  } ,
   drawer: {
     [theme.breakpoints.up("md")]: {
       width: drawerWidth,
@@ -90,12 +89,16 @@ const useStyles = makeStyles(theme => ({
   HeaderTop: {
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
+  },
+  Active:{
+    background: 'black'
   }
 }));
 
 export default function Demo(props) {
 
   const { window } = props;
+  const router = useRouter()
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -105,7 +108,7 @@ export default function Demo(props) {
   };
 
   const drawer = (
-    <div>
+    <div className={classes.MuiListItem2}>
       {/* <div className={classes.toolbar} /> */}
       <Box className={classes.HeaderTop}>
         <Typography variant='h5' align="center">
@@ -116,11 +119,11 @@ export default function Demo(props) {
         {["Dashboard", "about2", "about3"].map((text, index) => {
           return (
               <Link href={`/${text}`} key={text} passHref >
-                <ListItem  className={classes.listContainer}>
+                <ListItem  className={classes.listContainer , router.asPath === '/'+text ? classes.Active : null}>
                   <ListItemIcon >
                     {SVGICON[index]}
                   </ListItemIcon>
-                  {/* <ListItemText primary={text} /> */}
+                  <ListItemText primary={text}/>
                 </ListItem>
               </Link>
           );
@@ -132,7 +135,6 @@ export default function Demo(props) {
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
-  const router = useRouter()
 
   useEffect(() => {
     router.replace('/Dashboard')
