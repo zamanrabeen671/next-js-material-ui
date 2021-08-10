@@ -145,7 +145,7 @@ export default function Demo(props) {
 
   useEffect(() => {
     router.replace('/Dashboard')
-  }, []);
+  }, ['']);
 
 
   return (
