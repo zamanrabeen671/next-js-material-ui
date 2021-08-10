@@ -113,7 +113,32 @@ export default function Demo(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
+  const itemList = [
+    {
+      text: 'Dashboard',
+      icon: SVGICON[0]
+    },
+    {
+      text: 'Table',
+      icon: SVGICON[1]
+    },
+    {
+      text: 'About',
+      icon: SVGICON[2]
+    },
+    {
+      text: 'Blog',
+      icon: SVGICON[3]
+    },
+    {
+      text: 'AddContent',
+      icon: SVGICON[4]
+    },
+    {
+      text: 'User',
+      icon: SVGICON[5]
+    }
+  ]
   const drawer = (
     <div className={classes.MuiListItem2}>
       {/* <div className={classes.toolbar} /> */}
@@ -123,12 +148,13 @@ export default function Demo(props) {
         </Typography>
       </Box>
       <List>
-        {["Dashboard", "Table", "About", "Blog", "AddContent", "User"].map((text, index) => {
+        {itemList.map((item, index) => {
+          const {text, icon} = item;
           return (
             <Link href={`/${text}`} key={text} passHref >
               <ListItem className={classes.listContainer, router.asPath === '/' + text ? classes.Active : null}>
                 <ListItemIcon key={text}>
-                  {SVGICON[index]}
+                  {icon}
                 </ListItemIcon>
                 <ListItemText primary={text} className={router.asPath === '/' + text ? classes.textSHow : classes.textOff} />
               </ListItem>
