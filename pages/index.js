@@ -20,11 +20,16 @@ import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import Link from "next/link";
 import { useRouter } from 'next/router'
-import SVGICON from '../src/components/SvgIcon';
 import { Badge, Box, NotificationsIcon, Paper } from "@material-ui/core";
 import MailIcon from '@material-ui/icons/Mail';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import DashboardNavbar from "../src/components/Appbar";
+import {RiDashboardFill} from 'react-icons/ri';
+import {BsTabletLandscape} from 'react-icons/bs';
+import {FaRegStickyNote}  from 'react-icons/fa';
+import {GoDeviceDesktop} from 'react-icons/go';
+import {MdTouchApp} from 'react-icons/md';
+import {AiOutlineUser} from 'react-icons/ai'
 const drawerWidth = 120;
 
 const useStyles = makeStyles(theme => ({
@@ -96,6 +101,10 @@ const useStyles = makeStyles(theme => ({
   },
   textOff: {
     display: 'none',
+  },
+  IconStyle:{
+    fontSize: '30px',
+    color: '#fff'
   }
 
 
@@ -116,27 +125,27 @@ export default function Demo(props) {
   const itemList = [
     {
       text: 'Dashboard',
-      icon: SVGICON[0]
+      icon: <RiDashboardFill />
     },
     {
       text: 'Table',
-      icon: SVGICON[1]
+      icon: <BsTabletLandscape />
     },
     {
       text: 'About',
-      icon: SVGICON[2]
+      icon: <GoDeviceDesktop />
     },
     {
       text: 'Blog',
-      icon: SVGICON[3]
+      icon: <FaRegStickyNote />
     },
     {
       text: 'AddContent',
-      icon: SVGICON[4]
+      icon: <MdTouchApp />
     },
     {
       text: 'User',
-      icon: SVGICON[5]
+      icon: <AiOutlineUser />
     }
   ]
   const drawer = (
@@ -153,7 +162,7 @@ export default function Demo(props) {
           return (
             <Link href={`/${text}`} key={text} passHref >
               <ListItem className={classes.listContainer, router.asPath === '/' + text ? classes.Active : null}>
-                <ListItemIcon key={text}>
+                <ListItemIcon className={classes.IconStyle}>
                   {icon}
                 </ListItemIcon>
                 <ListItemText primary={text} className={router.asPath === '/' + text ? classes.textSHow : classes.textOff} />
