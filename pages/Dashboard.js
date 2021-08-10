@@ -1,9 +1,7 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
-import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import NewLeds from "../src/components/NewLeds";
 import Sales from "../src/components/Sales";
 import Orders from "../src/components/Orders";
