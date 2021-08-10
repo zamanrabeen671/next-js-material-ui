@@ -15,7 +15,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import AddIcon from './Combined Shape.svg';
-import AvatarImage from './avatar.jpg';
+import photos from './avatar.jpg';
 import Image from 'next/image';
 import { Avatar } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
@@ -82,10 +82,6 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
-  AvatarRoot: {
-      width: 30,
-      height: 30
-  },
 }));
 
 export default function DashboardNavbar() {
@@ -144,7 +140,7 @@ export default function DashboardNavbar() {
         <IconButton color="inherit">
           <Image src={AddIcon} height={20} width={20} />
         </IconButton>
-        <p>Messages</p>
+        <p>Delete</p>
       </MenuItem>
       <MenuItem>
         <IconButton aria-label="show 4 new notifications" color="#663399">
@@ -161,7 +157,9 @@ export default function DashboardNavbar() {
           aria-haspopup="true"
           color="inherit"
         >
-          <Avatar alt="A" src='/src/components/avatar.jpg' className={classes.AvatarRoot} />
+          <Avatar>
+              <Image src={photos} width={30} height={30} />
+            </Avatar>
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -202,7 +200,9 @@ export default function DashboardNavbar() {
             onClick={handleProfileMenuOpen}
             color="inherit"
           >
-            <Avatar alt="A" src="/src/components/avatar.jpg" className={classes.AvatarRoot} />
+            <Avatar>
+              <Image src={photos} width={30} height={30} />
+            </Avatar>
           </IconButton>
         </div>
         <div className={classes.sectionMobile}>

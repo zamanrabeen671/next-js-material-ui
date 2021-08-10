@@ -25,7 +25,7 @@ import { Badge, Box, NotificationsIcon, Paper } from "@material-ui/core";
 import MailIcon from '@material-ui/icons/Mail';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import DashboardNavbar from "../src/components/Appbar";
-const drawerWidth = 100;
+const drawerWidth = 120;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,17 +33,18 @@ const useStyles = makeStyles(theme => ({
     '& .MuiListItemIcon-root': {
       justifyContent: 'center !important',
     },
-    '& .MuiList-padding' : {
+    '& .MuiList-padding': {
       padding: '6px !important',
+      margin: '0 6px'
     },
-    '& .MuiListItem-root' : {
+    '& .MuiListItem-root': {
       flexDirection: 'column !important'
     }
 
   },
   MuiListItem2: {
     flexDirection: 'column !important'
-  } ,
+  },
   drawer: {
     [theme.breakpoints.up("md")]: {
       width: drawerWidth,
@@ -67,9 +68,6 @@ const useStyles = makeStyles(theme => ({
   },
   DefaultMenuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.down("md")]: {
-      display: "none"
-    }
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
@@ -90,9 +88,18 @@ const useStyles = makeStyles(theme => ({
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
   },
-  Active:{
-    background: 'black'
+  Active: {
+    background: '#f1f3f41f'
+  },
+  textSHow:{
+    display: 'block'
+  },
+  textOff: {
+    display: 'none',
   }
+
+
+
 }));
 
 export default function Demo(props) {
@@ -112,20 +119,20 @@ export default function Demo(props) {
       {/* <div className={classes.toolbar} /> */}
       <Box className={classes.HeaderTop}>
         <Typography variant='h5' align="center">
-          GULL
+          Gull
         </Typography>
       </Box>
       <List>
-        {["Dashboard", "about2", "about3"].map((text, index) => {
+        {["Dashboard", "Table", "About", "Blog", "AddContent", "User"].map((text, index) => {
           return (
-              <Link href={`/${text}`} key={text} passHref >
-                <ListItem  className={classes.listContainer , router.asPath === '/'+text ? classes.Active : null}>
-                  <ListItemIcon >
-                    {SVGICON[index]}
-                  </ListItemIcon>
-                  <ListItemText primary={text}/>
-                </ListItem>
-              </Link>
+            <Link href={`/${text}`} key={text} passHref >
+              <ListItem className={classes.listContainer, router.asPath === '/' + text ? classes.Active : null}>
+                <ListItemIcon >
+                  {SVGICON[index]}
+                </ListItemIcon>
+                <ListItemText primary={text} className={router.asPath === '/' + text ? classes.textSHow : classes.textOff} />
+              </ListItem>
+            </Link>
           );
         })}
       </List>
@@ -146,24 +153,28 @@ export default function Demo(props) {
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <IconButton
-            color="#663399"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-          <IconButton
-            color="#663399"
-            aria-label="open drawer"
-            edge="start"
-            // onClick={handleDrawerToggle}
-            className={classes.DefaultMenuButton}
-          >
-            <MenuIcon />
-          </IconButton>
+          <Hidden mdUp >
+            <IconButton
+              color="#663399"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              className={classes.menuButton}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Hidden>
+          <Hidden xsDown>
+            <IconButton
+              color="#663399"
+              aria-label="open drawer"
+              edge="start"
+              // onClick={handleDrawerToggle}
+              className={classes.DefaultMenuButton}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Hidden>
           <DashboardNavbar />
         </Toolbar>
       </AppBar>

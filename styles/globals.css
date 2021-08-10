@@ -1,3 +1,100 @@
-body{
-  background-color: #F1F3F4 !important;
+body {
+  background-color: #f1f3f4 !important;
+}
+.MuiListItem-root.MuiListItem-gutters {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 6px;
+  border-radius: 10px;
+}
+.MuiListItem-root.MuiListItem-gutters:hover {
+  background: #f1f3f41f;
+}
+.MuiListItemIcon-root {
+  justify-content: center;
+}
+.MuiList-root.MuiList-padding {
+  padding: 6px;
+}
+.MuiPaper-elevation1 {
+  box-shadow: none !important;
+}
+
+.MuiContainer-root {
+  padding-left: 48px !important;
+}
+
+.dashboard-paper {
+  display: flex;
+  padding: 15px;
+  width: 270px;
+  height: 131px;
+  border-radius: 24px !important;
+}
+
+.dashboard-logo {
+  width: 20px;
+  height: 61px;
+  margin: 8px;
+}
+
+.dashboard-text {
+  margin-left: 15px;
+  margin-top: 17px;
+}
+
+.dashboard-card-title {
+  color: #43454d;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.dashboard-card-iconDiv {
+  border-radius: 18px;
+  width: 36px;
+  height: 71px;
+  margin-top: 15px;
+}
+
+.dashboard-card-money {
+  font-weight: 900;
+  font-size: 3;
+}
+
+/* NewLeds */
+.newleads-iconDiv {
+  background: #f2f1fe;
+}
+
+.newleads-money {
+  color: #663399;
+}
+
+/* selles */
+
+.sales-iconDiv {
+  background: #c5dbff;
+}
+.sales-money {
+  color: #3981f7;
+}
+
+/* orders */
+
+.orders-iconDiv {
+  background: #bcddb3 !important;
+}
+
+.orders-money {
+  color: #5dae49;
+}
+
+/* Expense */
+.expense-iconDiv {
+  background: #fff6e0;
+}
+
+.expense-money {
+  color: #ffc620;
 }

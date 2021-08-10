@@ -17,6 +17,9 @@ const theme = createTheme({
       default: '#fff',
     },
   },
+  typography: {
+    fontFamily: "Nunito Sans, sans-serif",
+  },
 });
 
 export default theme;
